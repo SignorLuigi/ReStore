@@ -31,14 +31,5 @@ public class ProductsController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetProduct(int id)
-    {
-       var result = await _context.Products.FindAsync(id);
-       if(result is not null)
-       {
-         return Ok(result);
-       }
-
-       return NotFound();
-    }
+    public async Task<Product?> GetProduct(int id) => await _context.Products.FindAsync(id); // ?? new Product();
 }
